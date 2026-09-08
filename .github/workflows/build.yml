@@ -1,0 +1,44 @@
+name: Build ManuAI JAR
+
+# Laeuft automatisch bei jedem Push, und laesst sich auch manuell
+# ueber den "Actions"-Tab in GitHub anstossen ("Run workflow"-Button).
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: Java 25 installieren
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Gradle Wrapper ausfuehrbar machen
+        run: chmod +x gradlew
+
+      - name: Mod bauen
+        run: ./gradlew build --no-daemon
+
+      - name: Fertige JAR als Download bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: ManuAI-jar
+          # Nimmt build/libs/*.jar mit, aber KEINE -sources.jar
+          # (die enthaelt nur Quellcode, keine lauffaehige Mod)
+          path: |
+            build/libs/*.jar
+            !build/libs/*-sources.jar
+
+      - name: Bei Fehler - Problem-Report mitnehmen
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-error-report
+          path: build/reports/
+          if-no-files-found: ignore
