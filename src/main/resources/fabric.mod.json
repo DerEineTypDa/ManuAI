@@ -4,17 +4,20 @@
   "version": "0.1.0",
   "name": "ManuAI",
   "description": "Autonomer Survival-Mitspieler: sammelt, verwaltet und lagert Ressourcen selbststaendig.",
-  "authors": ["Manuel"],
-  "contact": {},
+  "authors": ["DerEineTypDa"],
+  "contact": {
+    "homepage": "https://github.com/DerEineTypDa/ManuAI",
+    "sources": "https://github.com/DerEineTypDa/ManuAI"
+  },
   "license": "MIT",
   "icon": "assets/manuai/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "at.woergl.manuai.ManuAI"
+      "de.manuai.ManuAIMod"
     ],
     "client": [
-      "at.woergl.manuai.client.ManuAIClient"
+      "de.manuai.client.ManuAIClient"
     ]
   },
   "mixins": [],
