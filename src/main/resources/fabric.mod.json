@@ -1,16 +1,17 @@
 {
   "schemaVersion": 1,
   "id": "manuai",
-  "version": "0.1.0",
+  "version": "${version}",
   "name": "ManuAI",
-  "description": "Autonomer Survival-Mitspieler: sammelt, verwaltet und lagert Ressourcen selbststaendig.",
-  "authors": ["DerEineTypDa"],
+  "description": "Autonomer KI-Survival-Mitspieler für Minecraft",
+  "authors": [
+    "DerEineTypDa"
+  ],
   "contact": {
     "homepage": "https://github.com/DerEineTypDa/ManuAI",
     "sources": "https://github.com/DerEineTypDa/ManuAI"
   },
   "license": "MIT",
-  "icon": "assets/manuai/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -20,11 +21,13 @@
       "de.manuai.client.ManuAIClient"
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "manuai.mixins.json"
+  ],
   "depends": {
-    "fabricloader": ">=0.19.0",
-    "minecraft": "~26.2",
-    "java": ">=25",
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21",
     "fabric-api": "*"
   }
 }
